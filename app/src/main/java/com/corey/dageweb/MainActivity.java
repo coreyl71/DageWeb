@@ -1,5 +1,6 @@
 package com.corey.dageweb;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -29,6 +30,9 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
@@ -209,43 +213,6 @@ public class MainActivity extends AppCompatActivity {
         wv_main = findViewById(R.id.wv_main);
     }
 
-
-    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
-    void applyPermissions() {
-        // 加载
-        wv_main.loadUrl(WEB_URL);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-    }
-
-    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
-    void onPermissionDenied() {
-        Toast.makeText(MainActivity.this, "如需进行身份认证，请开启应用存储和相机权限。", Toast.LENGTH_SHORT).show();
-
-        //引导用户至设置页手动授权
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
-        intent.setData(uri);
-        startActivity(intent);
-
-    }
-
-    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
-    void onNeverAskAgain() {
-
-        Toast.makeText(MainActivity.this, "您已禁止该权限，请手动开启。", Toast.LENGTH_SHORT).show();
-
-        //引导用户至设置页手动授权
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
-        intent.setData(uri);
-        startActivity(intent);
-
-    }
 
     private void openImageChooserActivity() {
 
@@ -658,4 +625,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void applyPermissions() {
+        // 加载
+        wv_main.loadUrl(WEB_URL);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onPermissionDenied() {
+
+        Toast.makeText(MainActivity.this, "如需进行身份认证，请开启应用存储和相机权限。", Toast.LENGTH_SHORT).show();
+
+        //引导用户至设置页手动授权
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+
+    }
+
+    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onNeverAskAgain() {
+
+        Toast.makeText(MainActivity.this, "您已禁止该权限，请手动开启。", Toast.LENGTH_SHORT).show();
+
+        //引导用户至设置页手动授权
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+
+    }
 }
