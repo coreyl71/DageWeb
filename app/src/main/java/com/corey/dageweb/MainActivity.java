@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 正式站
      */
-    private static final String WEB_URL = "http://www.naturenode.org/home";
+    private static final String WEB_URL = "http://www.wallet.thedage.com/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
