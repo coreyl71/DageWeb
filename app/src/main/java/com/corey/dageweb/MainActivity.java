@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 正式站
      */
-    private static final String WEB_URL = "https://www.wallet.thedage.com/login";
+    private static final String WEB_URL = "https://wallet.thedage.com/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -421,6 +421,9 @@ public class MainActivity extends AppCompatActivity {
                 getImageWebView(path);
 
                 break;
+
+                default:
+                    break;
 
         }
 
