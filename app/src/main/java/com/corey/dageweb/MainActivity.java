@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 正式站
      */
-//    private static final String WEB_URL = "https://wallet.thedage.com/login";
+    private static final String WEB_URL = "https://wallet.thedage.com/login";
     /**
      * 测试站
      */
-    private static final String WEB_URL = "http://47.75.3.2:88/login";
+//    private static final String WEB_URL = "http://47.75.3.2:88/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,10 +147,11 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = wv_main.getSettings();
         // 如果访问的页面中要与 Javascript 交互，则 WebView 必须设置支持 Javascript
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
 
         // 设置自适应屏幕，两者合用
-//        webSettings.setUseWideViewPort(true); // 将图片调整到适合 webview 的大小
-//        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        webSettings.setUseWideViewPort(true); // 将图片调整到适合 webview 的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
 
 //        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局
 
