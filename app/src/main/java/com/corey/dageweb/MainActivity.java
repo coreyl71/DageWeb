@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = wv_main.getSettings();
         // 如果访问的页面中要与 Javascript 交互，则 WebView 必须设置支持 Javascript
         webSettings.setJavaScriptEnabled(true);
+        // 设置是否开启 DOM 存储 API 权限，默认false，未开启
         webSettings.setDomStorageEnabled(true);
 
         // 设置自适应屏幕，两者合用
