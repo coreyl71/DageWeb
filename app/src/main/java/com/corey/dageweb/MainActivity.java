@@ -90,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 正式站
      */
-    private static final String WEB_URL = "https://wallet.thedage.com/login";
+//    private static final String WEB_URL = "https://wallet.thedage.com/login";
+    /**
+     * 测试站
+     */
+    private static final String WEB_URL = "http://47.75.3.2:88/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
